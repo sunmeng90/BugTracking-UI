@@ -35,3 +35,9 @@ Option 2: One routes, toggle display of nav bar when user is logged in or not
 [CanActivate: requiring authentication](https://angular.io/guide/router#canactivate-requiring-authentication)  
 [Basic Routing in Angular](https://blog.ng-book.com/basic-routing-in-angular-2/)  
 [Angular: Hide Navbar Menu from Login page](https://loiane.com/2017/08/angular-hide-navbar-login-page/)  
+
+
+##How to communicate between two components
+1. use custom events  
+2. use service  
+[[Sidenav] Open sidenav from another component ](https://github.com/angular/material2/issues/2936)  

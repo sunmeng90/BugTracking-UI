@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {EmployeeDatasource} from '../datasource/employee.datasource';
+import {EmployeeDataSource} from '../datasource/employeeDataSource';
 import {EmployeeService} from '../service/employee.service';
 import {Employee} from '../model/employee';
 
@@ -9,14 +9,14 @@ import {Employee} from '../model/employee';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  dataSource: EmployeeDatasource;
+  dataSource: EmployeeDataSource;
   displayedColumns: string[] = ['id', 'loginId', 'firstName', 'lastName'];
 
   constructor(private employeeService: EmployeeService) {
   }
 
   ngOnInit() {
-    this.dataSource = new EmployeeDatasource(this.employeeService);
+    this.dataSource = new EmployeeDataSource(this.employeeService);
     this.dataSource.loadEmployees('', 1, 10, 'asc');
   }
 

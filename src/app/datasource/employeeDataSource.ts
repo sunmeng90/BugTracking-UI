@@ -4,7 +4,7 @@ import {EmployeeService} from '../service/employee.service';
 import {DataSource} from '@angular/cdk/table';
 import {CollectionViewer} from '@angular/cdk/collections';
 
-export class EmployeeDatasource implements DataSource<Employee> {
+export class EmployeeDataSource implements DataSource<Employee> {
 
   private employeeSubject = new BehaviorSubject<Employee[]>([]);
 

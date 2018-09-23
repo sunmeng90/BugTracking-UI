@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <button aria-label="Toggle sidenav"  mat-icon-button (click)="navOpen()" class="brand-button">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <a mat-flat-button routerLink="/">BugTracking</a>
+  <a mat-flat-button routerLink="/employees">Employee</a>
+  <a mat-flat-button routerLink="/projects">Project</a>
+  <a mat-flat-button routerLink="/bugs">Bug</a>
+  <a mat-flat-button routerLink="/about">About</a>
+  <span class="spacer"></span>
+  <mat-form-field>
+    <input type="search" matInput>
+    <mat-icon matSuffix role="img" style="vertical-align: bottom">search</mat-icon>
+  </mat-form-field>
+  <a mat-flat-button routerLink="/login">LogOut</a>
+</mat-toolbar>

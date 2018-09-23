@@ -3,7 +3,15 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {EmployeeComponent} from './employee/employee.component';
-import {MatTableModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule, MatListModule,
+  MatSidenavModule,
+  MatTableModule,
+  MatToolbarModule
+} from '@angular/material';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {JwtInterceptor} from './inteceptor/jwt.interceptor';
 import {LoginComponent} from './login/login.component';
@@ -11,9 +19,11 @@ import {ErrorInterceptor} from './inteceptor/error.interceptor';
 import {AlertComponent} from './alert/alert.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {routing} from './app.routing';
-import { HomeLayoutComponent } from './home-layout/home-layout.component';
-import { LoginLayoutComponent } from './login-layout/login-layout.component';
-import { ProjectComponent } from './project/project.component';
+import {NavigationComponent} from './navigation/navigation.component';
+import {LoginLayoutComponent} from './login-layout/login-layout.component';
+import {ProjectComponent} from './project/project.component';
+import {HeaderComponent} from './header/header.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,15 +31,25 @@ import { ProjectComponent } from './project/project.component';
     EmployeeComponent,
     LoginComponent,
     AlertComponent,
-    HomeLayoutComponent,
+    NavigationComponent,
     LoginLayoutComponent,
-    ProjectComponent
+    ProjectComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     MatTableModule,
     ReactiveFormsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule ,
+    BrowserAnimationsModule,
     routing
   ],
   providers: [
