@@ -41,3 +41,10 @@ Option 2: One routes, toggle display of nav bar when user is logged in or not
 1. use custom events  
 2. use service  
 [[Sidenav] Open sidenav from another component ](https://github.com/angular/material2/issues/2936)  
+
+
+##JWT
+[Creating Beautiful Apps with Angular Material](https://auth0.com/blog/creating-beautiful-apps-with-angular-material/)
+
+##TODO
+https://www.sitepoint.com/component-routing-angular-router/

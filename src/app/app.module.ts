@@ -2,12 +2,12 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {EmployeeComponent} from './employee/employee.component';
+import {EmployeeListComponent} from './employee/employee-list.component';
 import {
   MatButtonModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatListModule,
+  MatInputModule, MatListModule, MatPaginatorModule,
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule
@@ -24,17 +24,31 @@ import {LoginLayoutComponent} from './login-layout/login-layout.component';
 import {ProjectComponent} from './project/project.component';
 import {HeaderComponent} from './header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SidenavComponent} from './navigation/sidenav.component';
+import {ActionListComponent} from './action-list/action-list.component';
+import {ActionPageComponent} from './action-page/action-page.component';
+import { EmployeeEditorComponent } from './employee/employee-editor.component';
+import { ProjectEditorComponent } from './project/project-editor.component';
+import { BugEditorComponent } from './bug/bug-editor.component';
+import { BugsComponent } from './bug/bugs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeComponent,
+    EmployeeListComponent,
     LoginComponent,
     AlertComponent,
     NavigationComponent,
     LoginLayoutComponent,
     ProjectComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidenavComponent,
+    ActionListComponent,
+    ActionPageComponent,
+    EmployeeEditorComponent,
+    ProjectEditorComponent,
+    BugEditorComponent,
+    BugsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +62,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatInputModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule ,
+    MatListModule,
+    MatPaginatorModule,
     BrowserAnimationsModule,
     routing
   ],
