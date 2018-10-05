@@ -1,34 +1,6 @@
 <div class="app-home">
-  <app-header class="header-toolbar" (sideNavToggle)="sideNav.toggle()"></app-header>
-  <div class="app-component-nav">
-    <mat-sidenav-container>
-      <mat-sidenav #sideNav mode="side" opened [fixedInViewport]="true" fixedTopGap="65" role="navigation">
-        <mat-nav-list>
-          <a mat-list-item routerLink=".">aaaaaaaaaaaaaaaaaaaaa</a>
-          <a mat-list-item routerLink=".">bbbbbbbbbbbbbbbbbbbbb</a>
-          <a mat-list-item routerLink=".">ccccccccccccccccccccc</a>
-          <a mat-list-item routerLink=".">ddddddddddddddddddddd</a>
-          <a mat-list-item routerLink=".">eeeeeeeeeeeeeeeeeeeee</a>
-          <a mat-list-item routerLink=".">aaaaaaaaaaaaaaaaaaaaa</a>
-          <a mat-list-item routerLink=".">bbbbbbbbbbbbbbbbbbbbb</a>
-          <a mat-list-item routerLink=".">ccccccccccccccccccccc</a>
-          <a mat-list-item routerLink=".">ddddddddddddddddddddd</a>
-          <a mat-list-item routerLink=".">eeeeeeeeeeeeeeeeeeeee</a>
-          <a mat-list-item routerLink=".">aaaaaaaaaaaaaaaaaaaaa</a>
-          <a mat-list-item routerLink=".">bbbbbbbbbbbbbbbbbbbbb</a>
-          <a mat-list-item routerLink=".">ccccccccccccccccccccc</a>
-          <a mat-list-item routerLink=".">ddddddddddddddddddddd</a>
-          <a mat-list-item routerLink=".">eeeeeeeeeeeeeeeeeeeee</a>
-        </mat-nav-list>
-      </mat-sidenav>
-
-      <mat-sidenav-content>
-        <div class="app-nav-content">
-          <router-outlet></router-outlet>
-        </div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
+  <app-header class="header-toolbar"></app-header>
+  <router-outlet></router-outlet>
 </div>
 
 <!--https://github.com/angular/material/issues/6502-->

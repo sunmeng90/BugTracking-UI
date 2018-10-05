@@ -30,3 +30,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<mat-paginator [length]="dataSource.employeeTotalCountSubject | async" (page)="pageEvent = $event"
+               [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
