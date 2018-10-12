@@ -4,11 +4,11 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {EmployeeListComponent} from './employee/employee-list.component';
 import {
-  MatButtonModule,
+  MatButtonModule, MatDatepickerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatListModule, MatPaginatorModule,
-  MatSidenavModule,
+  MatInputModule, MatListModule, MatNativeDateModule, MatPaginatorModule, MatRadioModule, MatSelectModule,
+  MatSidenavModule, MatStepperModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -64,6 +64,11 @@ import { BugsComponent } from './bug/bugs.component';
     MatSidenavModule,
     MatListModule,
     MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatStepperModule,
     BrowserAnimationsModule,
     routing
   ],

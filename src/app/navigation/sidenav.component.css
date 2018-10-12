@@ -1,0 +1,12 @@
+.app-nav-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-drawer-container{
+  background-color: white;
+}
+
+.mat-sidenav{
+  border-right: 2px solid lightblue;
+}

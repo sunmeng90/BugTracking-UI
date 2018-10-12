@@ -1,0 +1,83 @@
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="employeeForm">
+    <form class="employee-form" [formGroup]="employeeForm">
+      <ng-template matStepLabel>Employee Basic Information</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Login Id" formControlName="loginId">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lastName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Birthday" [matDatepicker]="picker" formControlName="birthDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="gender" style="display: none;">
+        <mat-radio-group placeholder="Gender" formControlName="gender">
+          <mat-radio-button value="M">Male</mat-radio-button>
+          <mat-radio-button value="F" style="margin-left: 1rem">Female</mat-radio-button>
+        </mat-radio-group>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext [disabled]="!employeeForm.valid">Next</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="employeeDeptRoleForm" [optional]="true">
+    <form class="employee-form" [formGroup]="employeeDeptRoleForm">
+      <ng-template matStepLabel>Employee Department and Role</ng-template>
+      <mat-form-field>
+        <mat-select placeholder="Role" formControlName="role">
+          <mat-option value="0">None</mat-option>
+          <mat-option value="1">Administrator</mat-option>
+          <mat-option value="2">Manager</mat-option>
+          <mat-option value="3">Developer</mat-option>
+          <mat-option value="4">Tester</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Department" formControlName="department">
+          <mat-option *ngFor="let dept of departments" [value]="dept.id">
+            {{dept.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext [disabled]="!employeeDeptRoleForm.valid">Next</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="employeeProjectForm" [optional]="true">
+    <form class="employee-form" [formGroup]="employeeProjectForm">
+      <ng-template matStepLabel>Employee Project</ng-template>
+      <mat-form-field>
+        <mat-select placeholder="Project" formControlName="project">
+          <mat-option value="0">None</mat-option>
+          <mat-option value="1">Administrator</mat-option>
+          <mat-option value="2">Manager</mat-option>
+          <mat-option value="3">Developer</mat-option>
+          <mat-option value="4">Tester</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="onSubmit()" [disabled]="!employeeProjectForm.valid">Submit</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
+
