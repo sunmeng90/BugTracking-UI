@@ -1,0 +1,13 @@
+<div class="app-component-nav" >
+  <mat-sidenav-container>
+    <mat-sidenav #sideNav mode="side" opened [fixedInViewport]="true" fixedTopGap="64" role="navigation">
+      <app-action-list [params]="params"></app-action-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="app-nav-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
