@@ -43,6 +43,43 @@ Option 2: One routes, toggle display of nav bar when user is logged in or not
 [[Sidenav] Open sidenav from another component ](https://github.com/angular/material2/issues/2936)  
 
 
+#When passing Observable from parent to child using @input, how to avoid undefined error when subscribe the observable when it is not assigned?
+[3 Ways to Pass Async Data to Angular 2+ Child Components](https://scotch.io/tutorials/3-ways-to-pass-async-data-to-angular-2-child-components)  
+[Observable of @Input property](https://stackoverflow.com/questions/44467336/observable-of-input-property)
+1. implements OnChanges and add callback in `ngOnChanges` to subscribe when input changes
+2. Using `BehaviorSubject`  like this:
+```ts  
+export class ActionListComponent implements OnInit {
+
+  private _routeParams = new BehaviorSubject<Params>(null);
+
+  @Input()
+  set params(value) {
+    this._routeParams.next(value);
+  }
+
+  get params() {
+    return this._routeParams.getValue();
+  }
+
+  constructor(public sideMenuService: SideMenuService, private _route: ActivatedRoute) {
+  }
+
+  ngOnInit() {
+    this._routeParams
+      .pipe(
+        filter(param => param != null)
+      )
+      .subscribe(data => {
+        console.log('params: ', data.section);
+      });
+  }
+}
+```
+3. [Angular2: Binding an observable to an immutable child component input](https://almerosteyn.com/2016/03/immutable-component-input-from-observable)
+
+
+  
 ##JWT
 [Creating Beautiful Apps with Angular Material](https://auth0.com/blog/creating-beautiful-apps-with-angular-material/)
 

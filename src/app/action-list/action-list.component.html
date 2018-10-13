@@ -1,6 +1,6 @@
 <mat-nav-list>
   <!-- load from section action list -->
   <a mat-list-item
-     *ngFor="let action of sideMenuService.getItems((params | async)?.section)"
+     *ngFor="let action of (actionList$ | async)"
      [routerLink]="'/' + (params | async)?.section + '/'+action.id">{{action.name}}</a>
 </mat-nav-list>
