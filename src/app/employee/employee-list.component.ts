@@ -2,9 +2,9 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {EmployeeDataSource} from '../datasource/employeeDataSource';
 import {EmployeeService} from '../service/employee.service';
 import {Employee} from '../model/employee';
-import {MatPaginator, PageEvent} from '@angular/material';
-import {fromEvent} from 'rxjs';
+import {MatPaginator} from '@angular/material';
 import {tap} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -13,11 +13,12 @@ import {tap} from 'rxjs/operators';
 })
 export class EmployeeListComponent implements AfterViewInit, OnInit {
   dataSource: EmployeeDataSource;
-  displayedColumns: string[] = ['id', 'loginId', 'firstName', 'lastName'];
+  displayedColumns: string[] = ['id', 'loginId', 'firstName', 'lastName', 'gender', 'birthDate', 'email', 'role', 'action'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService,
+              private _router: Router, private _route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -39,6 +40,9 @@ export class EmployeeListComponent implements AfterViewInit, OnInit {
   }
 
   editEmployee(employee: Employee) {
+    let emp:Object = Object.assign({}, employee);
+    emp['role'] = employee.role.id;
+    this._router.navigate(['../createEmployee', emp], { relativeTo: this._route})
 
   }
 
