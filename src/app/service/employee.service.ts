@@ -34,4 +34,12 @@ export class EmployeeService {
       return of(result as T);
     };
   }
+
+  createEmployee(emp: Employee) {
+    return this.http.post(this.BASE_URL + this.employeeUrl, emp, {
+      headers: new HttpHeaders({
+        'Accept': 'application/json'
+      })
+    }).pipe(catchError(this.handleError('createEmployees', [])));
+  }
 }

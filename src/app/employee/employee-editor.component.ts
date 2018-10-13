@@ -2,7 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Dept} from '../model/dept';
 import {DeptService} from '../service/dept.service';
+import {Role} from '../model/role';
+import {RoleService} from '../service/role.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Employee} from '../model/employee';
+import {EmployeeService} from '../service/employee.service';
 
+//https://www.concretepage.com/angular-2/angular-2-4-child-routes-and-relative-navigation-example
 @Component({
   selector: 'app-employee-editor',
   templateUrl: './employee-editor.component.html',
@@ -10,8 +16,11 @@ import {DeptService} from '../service/dept.service';
 })
 export class EmployeeEditorComponent implements OnInit {
 
+  currentEmployee: Employee = {} as Employee;
+
   employeeForm = this.fb.group(
     {
+      id: ['', Validators.required],
       loginId: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -24,7 +33,7 @@ export class EmployeeEditorComponent implements OnInit {
   employeeDeptRoleForm = this.fb.group(
     {
       role: ['', Validators.required],
-      department: ['']
+      deptId: ['']
     }
   );
 
@@ -35,8 +44,14 @@ export class EmployeeEditorComponent implements OnInit {
   );
 
   departments: Dept[] = [];
+  roles: Role[] = [];
 
-  constructor(private fb: FormBuilder, private deptService: DeptService) {
+  constructor(private fb: FormBuilder,
+              private _route: ActivatedRoute,
+              private _router: Router,
+              private employeeService: EmployeeService,
+              private deptService: DeptService,
+              private roleService: RoleService) {
   }
 
   ngOnInit() {
@@ -44,12 +59,44 @@ export class EmployeeEditorComponent implements OnInit {
       .subscribe(data => {
         this.departments = data;
       });
+    this.roleService.getRoles()
+      .subscribe(data => {
+        this.roles = data;
+      });
+
+    this._route.params.subscribe(
+      param => {
+        let employee = Object.assign({}, param);
+        let [role, deptId] = [employee['role'], employee['deptId']];
+        delete employee['role'];
+        delete employee['deptId'];
+        delete employee['hireDate'];
+        this.employeeForm.setValue(employee);
+        this.employeeDeptRoleForm.setValue({'role': role, 'department': deptId});
+      }
+    );
   }
+
+  /**
+   * Angular uses object identity to select option. It's possible for the identities of items to change while the data does not. This can happen, for example, if the items are produced from an RPC to the server, and that RPC is re-run. Even if the data hasn't changed, the second response will produce objects with different identities.
+
+   To customize the default option comparison algorithm, <select> supports compareWith input. compareWith takes a function which has two arguments: option1 and option2. If compareWith is given, Angular selects option by the return value of the function.
+
+   * https://angular.io/api/forms/SelectControlValueAccessor
+   * @param c1
+   * @param c2
+   */
+  compareFn(c1, c2): boolean {
+    return c1 && c2 && c1 == c2;
+  }
+
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.employeeForm.value);
-    console.warn(this.employeeDeptRoleForm.value);
-    console.warn(this.employeeProjectForm.value);
+    let deptRole = Object.assign({}, this.employeeDeptRoleForm.value);
+    deptRole['role'] = {id: deptRole['role']};
+    let emp: Employee = Object.assign({}, this.employeeForm.value, deptRole);
+    this.employeeService.createEmployee(emp).subscribe();
+    //TODO: submit project
   }
 }

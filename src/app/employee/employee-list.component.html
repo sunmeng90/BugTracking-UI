@@ -20,10 +20,32 @@
       <td mat-cell *matCellDef="let employee"> {{employee.lastName}}</td>
     </ng-container>
 
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef> Gender</th>
+      <td mat-cell *matCellDef="let employee"> {{employee.gender}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef> Birthday</th>
+      <td mat-cell *matCellDef="let employee"> {{employee.birthDate}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email</th>
+      <td mat-cell *matCellDef="let employee"> {{employee.email}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Role</th>
+      <td mat-cell *matCellDef="let employee"> {{employee.role?.name}}</td>
+    </ng-container>
+
+
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action</th>
       <td mat-cell *matCellDef="let employee">
-        <span class="edit" (click)="editEmployee(employee)"><i class="material-icons">edit</i></span>
+        <span class="edit"><i (click)="editEmployee(employee)" class="material-icons">edit</i></span>
         <span class="edit" (click)="deleteEmployee(employee)"><i class="material-icons">delete</i></span>
       </td>
     </ng-container>

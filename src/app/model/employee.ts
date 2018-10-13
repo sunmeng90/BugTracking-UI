@@ -9,4 +9,5 @@ export interface Employee {
   birthDate: Date;
   email: string;
   role: Role;
+  deptId:number;
 }

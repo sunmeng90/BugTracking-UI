@@ -2,6 +2,9 @@
   <mat-step [stepControl]="employeeForm">
     <form class="employee-form" [formGroup]="employeeForm">
       <ng-template matStepLabel>Employee Basic Information</ng-template>
+      <mat-form-field disabled style="display:none">
+        <input matInput placeholder="Id" formControlName="id">
+      </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Login Id" formControlName="loginId">
       </mat-form-field>
@@ -12,7 +15,8 @@
         <input matInput placeholder="Last Name" formControlName="lastName">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Birthday" (click)="picker.open()" [matDatepicker]="picker" formControlName="birthDate">
+        <input matInput placeholder="Birthday" (click)="picker.open()" [matDatepicker]="picker"
+               formControlName="birthDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -36,18 +40,16 @@
     <form class="employee-form" [formGroup]="employeeDeptRoleForm">
       <ng-template matStepLabel>Employee Department and Role</ng-template>
       <mat-form-field>
-        <mat-select placeholder="Role" formControlName="role">
-          <mat-option value="0">None</mat-option>
-          <mat-option value="1">Administrator</mat-option>
-          <mat-option value="2">Manager</mat-option>
-          <mat-option value="3">Developer</mat-option>
-          <mat-option value="4">Tester</mat-option>
+        <mat-select placeholder="Department" [compareWith]="compareFn" formControlName="deptId">
+          <mat-option *ngFor="let dept of departments" [value]="dept.id">
+            {{dept.name}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Department" formControlName="department">
-          <mat-option *ngFor="let dept of departments" [value]="dept.id">
-            {{dept.name}}
+        <mat-select placeholder="Role" [compareWith]="compareFn" formControlName="role">
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{role.name | uppercase}}
           </mat-option>
         </mat-select>
       </mat-form-field>
