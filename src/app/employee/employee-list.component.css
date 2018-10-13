@@ -5,3 +5,12 @@ table {
 .edit {
   cursor: pointer;
 }
+
+/**
+stick table header minus menu header height
+ */
+.employee-list-table {
+  overflow: auto;
+  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
+}

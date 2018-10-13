@@ -34,6 +34,7 @@ export class EmployeeListComponent implements AfterViewInit, OnInit {
 
   loadEmployees() {
     const pageIndex = this.paginator.pageIndex === 0 ? 1 : this.paginator.pageIndex;
+    this.dataSource.clear();
     this.dataSource.loadEmployees('', pageIndex, this.paginator.pageSize, 'asc');
   }
 
