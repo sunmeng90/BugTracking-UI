@@ -32,6 +32,11 @@ export class EmployeeDataSource implements DataSource<Employee> {
         }
       );
   }
+
+  clear() {
+    this.employeeSubject.next([]);
+    this.employeeTotalCountSubject.next(0);
+  }
 }
 
 const pageData = {
