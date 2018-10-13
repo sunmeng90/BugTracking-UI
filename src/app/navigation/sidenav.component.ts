@@ -19,11 +19,16 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log('path from root: ', this._route.pathFromRoot);
+    // console.log('path from root: ', this._route.pathFromRoot);
     this.params = combineLatest(
       this._route.pathFromRoot.map(route => route.params),
       Object.assign
     );
+
+    this.params.subscribe(data =>{
+      console.log('section params: ', data.section);
+
+    })
   }
 
   ngAfterViewInit(): void {
