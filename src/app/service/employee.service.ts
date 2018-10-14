@@ -42,4 +42,14 @@ export class EmployeeService {
       })
     }).pipe(catchError(this.handleError('createEmployees', [])));
   }
+
+  loginExists(loginId: string): Observable<any> {
+    console.log('checking login id exists', loginId)
+    return this.http
+      .get(this.BASE_URL + this.employeeUrl + '/loginId/' + loginId, {
+        headers: new HttpHeaders({
+          'Accept': 'application/json'
+        })
+      });
+  }
 }
