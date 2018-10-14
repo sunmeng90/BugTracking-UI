@@ -7,6 +7,7 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Login Id" formControlName="loginId">
+        <mat-error *ngIf="loginId.errors && (loginId.dirty || loginId.touched)">{{loginId.errors.error}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="First Name" formControlName="firstName">
@@ -22,6 +23,7 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf="email.errors && (email.dirty || email.touched)">{{email.errors.error}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput formControlName="gender" style="display: none;">
@@ -31,7 +33,7 @@
         </mat-radio-group>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext [disabled]="!employeeForm.valid">Next</button>
+        <button mat-button matStepperNext >Next</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
     </form>
@@ -55,7 +57,7 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext [disabled]="!employeeDeptRoleForm.valid">Next</button>
+        <button mat-button matStepperNext >Next</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
     </form>
@@ -74,7 +76,7 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="onSubmit()" [disabled]="!employeeProjectForm.valid">Submit</button>
+        <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
     </form>
