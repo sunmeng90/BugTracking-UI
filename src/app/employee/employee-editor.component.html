@@ -7,7 +7,7 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Login Id" formControlName="loginId">
-        <mat-error *ngIf="loginId.errors && (loginId.dirty || loginId.touched)">{{loginId.errors.error}}</mat-error>
+        <mat-error *ngIf="loginId.errors && (loginId.dirty || loginId.touched)">{{loginId.errors.error | json}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="First Name" formControlName="firstName">

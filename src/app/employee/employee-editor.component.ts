@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Employee} from '../model/employee';
 import {EmployeeService} from '../service/employee.service';
 import {Observable, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {HttpErrorResponse} from '@angular/common/http';
 
 //https://www.concretepage.com/angular-2/angular-2-4-child-routes-and-relative-navigation-example
@@ -69,13 +69,16 @@ export class EmployeeEditorComponent implements OnInit {
 
     this._route.params.subscribe(
       param => {
-        let employee = Object.assign({}, param);
-        let [role, deptId] = [employee['role'], employee['deptId']];
-        delete employee['role'];
-        delete employee['deptId'];
-        delete employee['hireDate'];
-        this.employeeForm.setValue(employee);
-        this.employeeDeptRoleForm.setValue({'role': role, 'deptId': deptId});
+        // if create new employee, we need set properties names here
+        const employee = Object.assign({}, param);
+        if (Object.keys(employee).length === 0) {
+          const [role, deptId] = [employee['role'], employee['deptId']];
+          delete employee['role'];
+          delete employee['deptId'];
+          delete employee['hireDate'];
+          this.employeeForm.setValue(employee);
+          this.employeeDeptRoleForm.setValue({'role': role, 'deptId': deptId});
+        }
       }
     );
   }
@@ -107,13 +110,16 @@ export class EmployeeEditorComponent implements OnInit {
     return this.employeeForm.get('loginId');
   }
 
-  get email(){
+  get email() {
     return this.employeeForm.get('email');
   }
 }
 
 export function loginIdValidator(employeeService: EmployeeService): AsyncValidatorFn {
   return (control: FormControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+    if (!control.value) {
+      return of({'error': 'login required'});
+    }
     return employeeService.loginExists(control.value)
       .pipe(
         map(data => {
