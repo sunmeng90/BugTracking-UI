@@ -70,7 +70,7 @@ export class EmployeeEditorComponent implements OnInit {
       param => {
         // if create new employee, we need set properties names here
         const employee = Object.assign({}, param);
-        if (Object.keys(employee).length === 0) {
+        if (Object.keys(employee).length !== 0) {
           const [role, deptId] = [employee['role'], employee['deptId']];
           delete employee['role'];
           delete employee['deptId'];
