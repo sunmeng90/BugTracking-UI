@@ -66,7 +66,6 @@ export class EmployeeEditorComponent implements OnInit {
       .subscribe(data => {
         this.roles = data;
       });
-
     this._route.params.subscribe(
       param => {
         // if create new employee, we need set properties names here
